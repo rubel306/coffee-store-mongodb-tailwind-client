@@ -1,6 +1,7 @@
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import "./AddCoffee.css";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   const handleAddCoffee = (e) => {
@@ -14,6 +15,25 @@ const AddCoffee = () => {
     const details = form.details.value;
     const photo = form.photo.value;
     const addCoffee = { name, chef, supplier, taste, category, details, photo };
+
+    fetch(`http://localhost:5000/coffees`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(addCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged === true) {
+          Swal.fire({
+            icon: "success",
+            title: "Successful ",
+            text: "Your Added a Coffee Successfully",
+          });
+        }
+        console.log(data);
+      });
     console.log(addCoffee);
   };
   return (
