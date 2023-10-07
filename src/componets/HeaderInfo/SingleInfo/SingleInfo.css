@@ -1,0 +1,24 @@
+.single-info img {
+  width: 70px;
+  height: 70px;
+}
+.single-info h2 {
+  color: #331a15;
+  font-family: Rancho;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.single-info p {
+  color: #1b1a1a;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px; /* 162.5% */
+}
+.info-area {
+  padding-right: 5%;
+  padding-left: 5%;
+}
