@@ -18,13 +18,16 @@ const UpdateCoffee = () => {
     const details = form.details.value;
     const photo = form.photo.value;
     const addCoffee = { name, chef, supplier, taste, category, details, photo };
-    fetch(`http://localhost:5000/update/${coffee._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addCoffee),
-    })
+    fetch(
+      `https://coffee-store-mongodb-tailwind-server-27v96cyfh-rubels-projects.vercel.app/update/${coffee._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged === true) {

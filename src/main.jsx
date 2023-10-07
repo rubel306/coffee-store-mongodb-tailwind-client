@@ -16,7 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/coffees"),
+        loader: () =>
+          fetch(
+            "https://coffee-store-mongodb-tailwind-server-27v96cyfh-rubels-projects.vercel.app/coffees"
+          ),
       },
     ],
   },
@@ -27,12 +30,18 @@ const router = createBrowserRouter([
   {
     path: "coffees/:id",
     element: <ViewCoffee></ViewCoffee>,
-    loader: ({ params }) => fetch(`http://localhost:5000/coffees/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://coffee-store-mongodb-tailwind-server-27v96cyfh-rubels-projects.vercel.app/coffees/${params.id}`
+      ),
   },
   {
     path: "/update/:id",
     element: <UpdateCoffee></UpdateCoffee>,
-    loader: ({ params }) => fetch(`http://localhost:5000/update/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://coffee-store-mongodb-tailwind-server-27v96cyfh-rubels-projects.vercel.app/update/${params.id}`
+      ),
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

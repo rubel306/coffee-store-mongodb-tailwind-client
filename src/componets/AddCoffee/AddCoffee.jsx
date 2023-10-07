@@ -16,13 +16,16 @@ const AddCoffee = () => {
     const photo = form.photo.value;
     const addCoffee = { name, chef, supplier, taste, category, details, photo };
 
-    fetch(`http://localhost:5000/coffees`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(addCoffee),
-    })
+    fetch(
+      `https://coffee-store-mongodb-tailwind-server-27v96cyfh-rubels-projects.vercel.app/coffees`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(addCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged === true) {
