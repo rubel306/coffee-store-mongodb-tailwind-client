@@ -1,0 +1,18 @@
+.add-coffee-info h2 {
+  color: #374151;
+  font-family: Rancho;
+  font-size: 45px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 32px;
+}
+.add-coffee-info p {
+  color: rgba(27, 26, 26, 0.7);
+  text-align: center;
+  font-family: Raleway;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 166.667% */
+}
