@@ -1,37 +1,40 @@
 import React from "react";
 import { FaRegEye, FaPencilAlt, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/coffees/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const remaining = coffees.filter((cof) => cof._id !== _id);
-        setCoffees(remaining);
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/coffees/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
             if (data.acknowledged === true) {
               Swal.fire("Deleted!", "Your Coffee has been deleted.", "success");
             }
-          }
-        });
-        console.log(data);
-      });
+            const remaining = coffees.filter((cof) => cof._id !== _id);
+            setCoffees(remaining);
+            console.log(data);
+          });
+      }
+    });
+
     console.log(id);
   };
+
   return (
     <div>
       <div className="card card-side bg-base-100 shadow-xl bg-[#F5F4F1] p-8 m-4">
@@ -66,12 +69,12 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
             </p>
           </div>
           <div className="btn-group btn-group-vertical">
-            <button className="btn">
+            <Link to={`/coffees/${_id}`} className="btn">
               <FaRegEye></FaRegEye>
-            </button>
-            <button className="btn">
+            </Link>
+            <Link to={`/update/${_id}`} className="btn">
               <FaPencilAlt></FaPencilAlt>
-            </button>
+            </Link>
             <button className="btn" onClick={() => handleDelete(_id)}>
               <FaTrashAlt></FaTrashAlt>
             </button>
